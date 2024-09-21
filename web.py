@@ -103,7 +103,7 @@ class myFLModel:
             device_list=device_list,
             model=model,
             aggregator=secure_aggregator,
-            strategy="fed_avg_w",
+            strategy="fed_prox",
             backend="tensorflow",
         )
 
@@ -138,16 +138,6 @@ class myFLModel:
         plt.savefig("figure/mae.png")
 
 
-        # # Draw loss for training & validation
-        plt.plot(self.history["global_history"]['loss'])
-        plt.plot(self.history["global_history"]['val_loss'])
-        plt.title('FLModel loss')
-        plt.ylabel('Loss')
-        plt.xlabel('Epoch')
-        plt.legend(['Train', 'Valid'], loc='upper left')
-        plt.savefig("figure/loss.png")
-
-        put_image(open('figure/loss.png', 'rb').read())
         put_image(open('figure/mae.png', 'rb').read())
         put_image(open('figure/mse.png', 'rb').read())
         
@@ -232,9 +222,5 @@ def myfirstpage():
     None
     ],size='80px 50px 100px 50px 100px 50px 200px')        
         
-
-
-    
-
 if __name__ == '__main__':
     start_server(myfirstpage,port=8083,auto_open_webbrowser=True)
